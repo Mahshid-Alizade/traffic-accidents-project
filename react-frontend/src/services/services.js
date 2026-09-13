@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://traffic-accidents-project.onrender.com"
 
 function getParams(filters) {
   console.log("filters send to database :" , filters)

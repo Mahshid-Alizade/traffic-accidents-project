@@ -1,0 +1,31 @@
+.info-card {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+    height: 5rem;
+    /* width: 12rem; */
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+}
+    
+.info-card:hover {
+    transform: translateY(-4px);
+    border-color: #b51c1c;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sub-info {
+    font-size: var(--font-small);
+}
+
+.infocard-icon{
+    color: var(--color-red);
+}
+

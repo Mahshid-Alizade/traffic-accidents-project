@@ -1,0 +1,43 @@
+.submit-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.submit-button {
+    height: 2.5rem;
+    padding: 0 1.25rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+
+    background-color: #b51c1c;
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
+}
+
+.submit-button:hover {
+    background-color: #961414;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-button:active {
+    transform: translateY(1px);
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}

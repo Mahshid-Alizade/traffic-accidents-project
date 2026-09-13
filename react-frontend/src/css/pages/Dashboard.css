@@ -1,0 +1,13 @@
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 2rem 0;
+    gap: 1rem;
+    color: var(--color-black);;
+}
+
+.chart-section p{
+    font-weight: bold;
+    padding-bottom:1rem;
+    color: var(--color-black);;
+}

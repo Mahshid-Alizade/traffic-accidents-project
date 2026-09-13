@@ -1,0 +1,21 @@
+.header h2 {
+    font-size: var(--font-large);
+    font-weight: bold;
+    color: var(--color-black);
+}
+
+.header p {
+    font-size: var(--font-small);
+    color: var(--color-black);
+}
+
+@media (max-width: 425px) {
+    .header p {
+        display: none;
+    }
+    .header h2 {
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+}

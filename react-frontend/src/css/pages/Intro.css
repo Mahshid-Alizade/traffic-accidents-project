@@ -1,0 +1,23 @@
+.intro-page {
+    height: 100vh;
+    background-color: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(228, 228, 228);
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.explore {
+    color: var(--color-red);
+}
+
+.intro-cta {
+    position: fixed;
+    bottom: 3rem;
+}

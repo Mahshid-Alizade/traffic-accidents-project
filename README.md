@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project combines multiple official German datasets into a single platform for exploring and analyzing road traffic accidents. The integrated data can be accessed through a REST API and a browser-based dashboard.
+This project integrates multiple official German datasets into a single full-stack platform for exploring, analyzing, and visualizing road traffic accidents.
+
+The integrated data is accessed through a REST API and presented through a modern, interactive web application.
 
 The platform includes:
 
@@ -12,15 +14,28 @@ The platform includes:
 
 The datasets are linked using the official **AGS (Amtlicher Gemeindeschlüssel)**, which uniquely identifies German administrative regions.
 
+The application provides interactive data exploration, filtering, statistical analysis, and data visualization of German traffic accident data.
+
+---
+
+## Live Demo
+
+🌐 **Web Application:**  
+https://traffic-accidents-project.vercel.app/
+
+📚 **Swagger API Documentation:**  
+https://traffic-accidents-project.onrender.com/api-docs
+
 ---
 
 ## Technologies
 
 * **Backend:** Node.js, Express.js
-* **Database:** PostgreSQL
-* **Frontend:** HTML, CSS, JavaScript
+* **Database:** PostgreSQL, Neon
+* **Frontend:** React, Vite, JavaScript
 * **Data Processing:** Python, Pandas
 * **API Documentation:** Swagger/OpenAPI
+* **Deployment:** GitHub, Vercel, Render
 
 ---
 
@@ -29,13 +44,35 @@ The datasets are linked using the official **AGS (Amtlicher Gemeindeschlüssel)*
 ```text
 DBW-PROJECT
 │
-├── backend/          # REST API and server
+├── backend/                  # Node.js / Express REST API
+│   ├── routes/               # API routes
+│   ├── server.js             # Express server
+│   ├── db.js                 # PostgreSQL connection
+│   ├── swagger.js            # Swagger configuration
+│   └── package.json
+│
 ├── data/
-│   ├── raw_data/     # Original datasets
-│   ├── cleaned_data/ # Processed datasets
-│   └── scripts/      # ETL scripts
-├── frontend/         # Web application
-├── database/         # Database schema
+│   ├── raw_data/             # Original datasets
+│   ├── cleaned_data/         # Processed datasets
+│   └── scripts/              # Python ETL scripts
+│
+├── database/                 # Database schema and SQL files
+│
+├── frontend/                 # Original/static frontend
+│
+├── react-frontend/           # React + Vite frontend application
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── ...
+│   ├── public/
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore
+├── package.json
 └── README.md
 ```
 
@@ -51,99 +88,76 @@ The project integrates three official German datasets:
 | Population Statistics               | 2016–2024              |
 | Administrative Regions              | Current reference data |
 
-The AGS code is used to connect all datasets during the ETL process.
+The official **AGS** code is used to connect the datasets during the ETL process.
 
 ---
 
-## How to Run the Project
+## Data Processing
 
-### Prerequisites
+The data processing pipeline was implemented using **Python and Pandas**.
 
-Make sure the following software is installed:
+The ETL process includes:
 
-* PostgreSQL
-* Node.js and npm
-* Python 3
+1. Cleaning and preparing administrative region data.
+2. Cleaning and preparing population statistics.
+3. Cleaning and preparing traffic accident data.
+4. Linking the datasets using AGS codes.
+5. Importing the processed data into PostgreSQL.
 
-### Step 1 – Set Up the Database
+The processed data is then accessed by the backend through the REST API.
 
-Create a PostgreSQL database and execute the SQL schema:
+---
 
-```bash
-psql -U <username> -d <database_name> -f database/schema.sql
-```
+## Backend
 
-Alternatively, you can use the provided `.env` file to connect to the existing database containing the processed data.
+The backend is implemented with **Node.js and Express.js**.
 
-### Step 2 – Import the Data (Optional)
+It provides REST API endpoints for retrieving accident, population, region, and metadata information.
 
-If you want to build the database from scratch, download the datasets from the official sources and place them in the `data/raw_data` directory. Then run the ETL scripts in the following order:
+### API Endpoints
 
-```bash
-python data/scripts/clean_regions.py
-python data/scripts/clean_population.py
-python data/scripts/clean_accident.py
-```
+| Endpoint                     | Purpose                                              |
+| ---------------------------- | ---------------------------------------------------- |
+| `/accidents`                 | Retrieve accident records                            |
+| `/accidents/count`           | Count matching accidents                             |
+| `/accidents/rate`            | Calculate accident rates                             |
+| `/accidents/first-year`      | Return the first available year                      |
+| `/accidents/trend`           | Show yearly accident trends                          |
+| `/accidents/monthly-summary` | Retrieve monthly accident totals for a selected year |
+| `/accidents/weekday-summary` | Retrieve accident totals grouped by weekday          |
+| `/population`                | Retrieve population data                             |
+| `/regions`                   | Search administrative regions                        |
+| `/metadata`                  | Retrieve dataset information                         |
 
-### Step 3 – Start the Backend
+### Swagger Documentation
 
-Navigate to the backend folder, install the required packages, and start the server:
+The API is documented using **Swagger / OpenAPI**.
 
-```bash
-cd backend
-npm install
-npm start
-```
-
-The REST API will be available at:
-
-```text
-http://localhost:3000
-```
-
-Swagger documentation can be accessed at:
+When running locally, Swagger documentation is available at:
 
 ```text
 http://localhost:3000/api-docs
 ```
 
-### Step 4 – Start the Frontend
-
-Open a terminal in the frontend directory and start a local web server:
-
-```bash
-cd frontend
-python -m http.server 8080
-```
-
-Then open the application in your browser:
-
-```text
-http://localhost:8080
-```
-
-The frontend communicates automatically with the backend API running on port **3000**.
-
-## Available API Endpoints
-
-| Endpoint                      | Purpose                                               |
-| -----------------------       | -------------------------------                       |
-| `/accidents`                  | Retrieve accident records                             |
-| `/accidents/count`            | Count matching accidents                              |
-| `/accidents/rate`             | Calculate accident rates                              |
-| `/accidents/first-year`       | Return the first available year                       |
-| `/accidents/trend`            | Show yearly accident trends                           |
-| `/accidents/monthly-summary`  | Retrieve monthly accident totals for a selected year  |
-| `/accidents/weekday-summary`  | Retrieve accident totals grouped by weekday           |
-| `/population`                 | Retrieve population data                              |
-| `/regions`                    | Search administrative regions                         |
-| `/metadata`                   | Retrieve dataset information                          |
-
 ---
 
-## Frontend Features
+## Frontend
 
-The web application provides the following pages:
+The frontend was initially developed as a static web application and was later migrated to **React with Vite**.
+
+The current frontend is a component-based React application using:
+
+* **React Router** for navigation
+* **Recharts** for charts and data visualization
+* **Lucide React** for icons
+* **Motion** for animations
+* JavaScript for application logic
+
+The React frontend communicates with the deployed Express REST API to retrieve and display data dynamically.
+
+### Main Features
+
+The application provides several interactive pages:
 
 * Dashboard
 * Accident Explorer
@@ -154,26 +168,205 @@ The web application provides the following pages:
 * Region Explorer
 * Metadata Viewer
 
+Users can filter accident data by different criteria and explore the results through tables, statistics, and interactive charts.
+
+---
+
+## Running the Project Locally
+
+### Prerequisites
+
+Make sure the following software is installed:
+
+* Node.js
+* npm
+* PostgreSQL
+* Python 3
+
+---
+
+### Step 1 – Set Up the Database
+
+Create a PostgreSQL database and execute the SQL schema:
+
+```bash
+psql -U <username> -d <database_name> -f database/schema.sql
+```
+
+Alternatively, the backend can be connected to an existing PostgreSQL database using environment variables.
+
+Create a `.env` file inside the `backend` directory:
+
+```env
+DB_HOST=<database_host>
+DB_PORT=5432
+DB_NAME=<database_name>
+DB_USER=<database_user>
+DB_PASSWORD=<database_password>
+PORT=3000
+```
+
+---
+
+### Step 2 – Import the Data (Optional)
+
+If the database needs to be built from scratch, download the datasets from their official sources and place them in the appropriate directories.
+
+Then run the ETL scripts:
+
+```bash
+python data/scripts/clean_regions.py
+python data/scripts/clean_population.py
+python data/scripts/clean_accident.py
+```
+
+---
+
+### Step 3 – Start the Backend
+
+Navigate to the backend directory:
+
+```bash
+cd backend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the server:
+
+```bash
+npm start
+```
+
+The REST API will be available at:
+
+```text
+http://localhost:3000
+```
+
+Swagger documentation:
+
+```text
+http://localhost:3000/api-docs
+```
+
+---
+
+### Step 4 – Start the React Frontend
+
+Navigate to the React frontend:
+
+```bash
+cd react-frontend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+Vite will provide a local development URL, typically:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Deployment
+
+The project is deployed using a modern cloud-based architecture:
+
+```text
+                    ┌──────────────────┐
+                    │     GitHub       │
+                    │   Source Code    │
+                    └────────┬─────────┘
+                             │
+              ┌──────────────┴──────────────┐
+              │                             │
+              ▼                             ▼
+      ┌─────────────────┐          ┌─────────────────┐
+      │     Vercel      │          │     Render      │
+      │ React + Vite    │          │ Node + Express  │
+      │    Frontend     │          │     Backend     │
+      └────────┬────────┘          └────────┬────────┘
+               │                            │
+               │         REST API           │
+               └───────────────────────────►│
+                                            │
+                                            ▼
+                                  ┌─────────────────┐
+                                  │      Neon       │
+                                  │   PostgreSQL    │
+                                  │    Database     │
+                                  └─────────────────┘
+```
+
+### Production URLs
+
+**Frontend:**
+
+https://traffic-accidents-project.vercel.app/
+
+**Backend:**
+
+https://traffic-accidents-project.onrender.com
+
+The React frontend communicates with the deployed Express backend through REST API requests.
+
 ---
 
 ## Reproducibility
 
-The project can be reproduced using the provided source code, SQL schema, and ETL scripts. Since the original datasets are publicly available, they can be downloaded directly from their official providers and processed using the included pipeline.
+The project can be reproduced using the provided:
+
+* Source code
+* Database schema
+* Python ETL scripts
+* Configuration files
+
+The original datasets are publicly available from their official providers and can be downloaded and processed using the included ETL pipeline.
 
 ---
 
 ## Dataset Sources
 
-* Traffic Accident Data: 
+### Traffic Accident Data
+
+Unfallatlas:
+
 https://unfallatlas.statistikportal.de/
-* Population Statistics: 
+
+### Population Statistics
+
+GENESIS-Online:
+
 https://genesis.destatis.de/datenbank/online/statistic/12411/table/12411-0015/table-toolbar
-* Administrative Regions: 
+
+### Administrative Regions
+
+Statistisches Bundesamt:
+
 https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html
 
 ---
 
 ## License
 
-The datasets are published under the **Data Licence Germany – Attribution – Version 2.0**.
+The datasets are published under the:
+
+**Data Licence Germany – Attribution – Version 2.0**
+
 https://www.govdata.de/dl-de/by-2-0

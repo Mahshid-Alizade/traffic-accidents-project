@@ -36,7 +36,6 @@ export default function Population() {
         state,
       });
 
-      console.log("data produced by getPopulation", data);
       const preparedData = prepareEntries(data, "population");
 
       setResult({

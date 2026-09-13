@@ -27,8 +27,6 @@ function AccidentCounter() {
         injuryType,
       });
 
-      console.log("data produced by getAccidents", accidetnsCount);
-
       setResult({
         resultTitle: "Total Accidents",
         resultCount: accidetnsCount,

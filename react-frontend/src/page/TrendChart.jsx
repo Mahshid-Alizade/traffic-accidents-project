@@ -20,8 +20,6 @@ export default function TrendChart() {
         state,
       });
 
-      console.log("data produced by getChart", data);
-
       setChartData(data);
     } catch (error) {
       console.error(error);

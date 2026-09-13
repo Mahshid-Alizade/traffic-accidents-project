@@ -18,7 +18,6 @@ export default function Region() {
         state,
       });
 
-      console.log("data produced by getRegion", data);
       const preparedData = prepareEntries(data, "region");
 
       setResult({

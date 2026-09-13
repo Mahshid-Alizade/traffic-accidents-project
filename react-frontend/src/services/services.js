@@ -1,7 +1,6 @@
 const BASE_URL = "https://traffic-accidents-project.onrender.com"
 
 function getParams(filters) {
-  console.log("filters send to database :" , filters)
   const params = new URLSearchParams();
 
   if (filters.year) {
@@ -36,7 +35,6 @@ function getParams(filters) {
     params.append("sort", filters.sort);
   }
 
-  console.log("3. params:", params.toString());
   return (params);
 }
 
@@ -44,8 +42,6 @@ export async function getAccidents(filters) {
   
   const params = getParams(filters)
   const url = `${BASE_URL}/accidents?${params.toString()}`;
-
-  console.log("4. URL filter accidents:", url);
 
   const response = await fetch(
     url
@@ -63,8 +59,6 @@ export async function countAccidents(filters) {
   const params = getParams(filters)
   const url = `${BASE_URL}/accidents/count?${params.toString()}`;
 
-  console.log("count: URL filter accidents:", url);
-
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -72,7 +66,6 @@ export async function countAccidents(filters) {
   }
 
   const data = await response.json();
-  console.log(data.accidents)
   return data.accidents;
 }
 
@@ -80,8 +73,6 @@ export async function accidentsRate(filters) {
 
   const params = getParams(filters);
   const url = `${BASE_URL}/accidents/rate?${params.toString()}`;
-
-  console.log("rate: URL filter accidents:", url);
 
   const response = await fetch(url);
 
@@ -99,8 +90,6 @@ export async function getFirstyear(filters) {
   const params = getParams(filters);
   const url = `${BASE_URL}/accidents/first-year?${params.toString()}`;
 
-  console.log("rate: URL first year accidents:", url);
-
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -116,8 +105,6 @@ export async function getChart(filters) {
 
   const params = getParams(filters);
   const url = `${BASE_URL}/accidents/trend?${params.toString()}`;
-
-  console.log("rate: URL trend accidents:", url);
 
   const response = await fetch(url);
 
@@ -135,8 +122,6 @@ export async function getPopulation(filters) {
   const params = getParams(filters);
   const url = `${BASE_URL}/population?${params.toString()}`;
 
-  console.log("rate: URL trend accidents:", url);
-
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -153,8 +138,6 @@ export async function getRegion(filters) {
   const params = getParams(filters);
   const url = `${BASE_URL}/regions?${params.toString()}`;
 
-  console.log("rate: URL trend accidents:", url);
-
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -169,8 +152,6 @@ export async function getRegion(filters) {
 export async function getMetadata() {
   const url = `${BASE_URL}/metadata/datasets`;
   const response = await fetch(url);
-
-  console.log("rate: URL metadata:", url);
 
   if (!response.ok) {
     throw new Error("Failed to fetch metadata");

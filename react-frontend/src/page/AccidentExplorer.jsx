@@ -39,8 +39,7 @@ function AccidentExplorer() {
         injuryType,
         limit,
       });
-
-      console.log("data produced by getAccidents", data);
+      
       const preparedData = prepareEntries(data, "explorer");
 
       setResult({

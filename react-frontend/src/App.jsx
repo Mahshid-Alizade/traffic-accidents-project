@@ -19,14 +19,7 @@ import { div } from "motion/react-client";
 function App() {
   const location = useLocation();
 
-  const [showIntro, setShowIntro] = useState(() => {
-    const navigationType = performance.getEntriesByType("navigation")[0]?.type;
-
-    const isDashboard = window.location.pathname === "/";
-    const isRefresh = navigationType === "reload";
-
-    return isDashboard && isRefresh;
-  });
+  const [showIntro, setShowIntro] = useState(() => location.pathname === "/");
 
   const handleEnter = () => {
     setShowIntro(false);

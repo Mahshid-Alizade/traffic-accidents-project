@@ -18,7 +18,6 @@ export default function AccidentFirstyear() {
         state,
       });
 
-      console.log("data produced by firstyear", data);
       setResult({
         year: data.first_available_year,
         description: state

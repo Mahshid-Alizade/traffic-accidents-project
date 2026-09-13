@@ -1,9 +1,18 @@
 import "../css/ResultTable.css";
+import ResultCard from "./ResultCard";
 import { AnimatePresence, motion } from "motion/react";
 
 function ResultTable({ data }) {
   if (!data || data.length === 0) {
-    return <p>No results found.</p>;
+    // return <p>No results found.</p>;
+    return (
+      <ResultCard
+        resultTitle="with the given entries"
+        resultCount="No data is available!"
+        resultDescription=""
+        status="error"
+      />
+    );
   }
 
   return (

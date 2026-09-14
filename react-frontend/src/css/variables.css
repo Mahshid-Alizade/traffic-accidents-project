@@ -20,7 +20,7 @@
     font-family: "Cantarell", sans-serif;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 420px) {
     :root {
         --sidebar-width: 60px;
     }

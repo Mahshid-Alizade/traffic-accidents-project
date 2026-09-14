@@ -58,6 +58,6 @@
     border-bottom: none;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 420px) {
 .result-table { min-width: 200px}
 }

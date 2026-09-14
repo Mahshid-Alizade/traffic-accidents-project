@@ -1,13 +1,20 @@
 .intro-page {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
+
     background-color: var(--color-black);
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(228, 228, 228);
+    cursor: pointer;
+    padding: 2rem;
 }
 
 .intro-content {
+    width: 100%;
+    max-width: 900px;
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -20,4 +27,23 @@
 .intro-cta {
     position: fixed;
     bottom: 3rem;
+    color: var(--color-gray);
+    transition: color 0.2s;
 }
+
+.intro-cta:hover {
+    color: var(--color-red);
+}
+
+@media (max-width: 425px) {
+
+    .intro-page{
+        font-size: x-small;
+    }
+
+    .intro-project h1{
+        font-size: small;
+    }
+}
+
+

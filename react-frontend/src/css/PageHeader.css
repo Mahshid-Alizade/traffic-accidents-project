@@ -9,7 +9,7 @@
     color: var(--color-black);
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
     .header p {
         display: none;
     }

@@ -3,7 +3,7 @@
   padding: 2rem 2rem;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .main-content {
     margin-left: 0;
     padding: 1rem 1rem;

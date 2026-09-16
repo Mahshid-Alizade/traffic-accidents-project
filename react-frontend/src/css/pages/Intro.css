@@ -38,11 +38,11 @@
 @media (max-width: 440px) {
 
     .intro-page{
-        font-size: x-small;
+        font-size: small;
     }
 
     .intro-project h1{
-        font-size: small;
+        font-size: medium;
     }
 }
 

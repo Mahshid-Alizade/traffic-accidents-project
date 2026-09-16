@@ -15,11 +15,11 @@ export default function Population() {
   const [state, setState] = useState("");
   const [result, setResult] = useState(null);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 440);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 425);
+      setIsMobile(window.innerWidth <= 440);
     };
 
     window.addEventListener("resize", handleResize);
